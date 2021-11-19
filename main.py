@@ -11,8 +11,9 @@ def parse_parameters(query: str) -> dict:
                 x = i.split('=')
                 # print(x)
                 token.update({x[0]: x[1]})
-    # else:
-    #     print("Your url isn`t correct")
+        # print(token)
+    else:
+        print("Your url isn`t correct")
     return token
 
 
@@ -27,21 +28,18 @@ def parse_cookies(cookies: str) -> dict:
             x = i.split('=')
             # print(f'x = {x}')
             jar.update({x[0]: x[1]})
+        # print(jar)
     return jar
 
 
 if __name__ == '__main__':
-    # Извините сделал через кучу костылей так как пока не вижу решения без них.
-    # Вроде работает но буду рад если подскажете как обойти try и !(костыль в куках)
-
     # Tests for function "parse_parameters"
     assert parse_parameters('http://example.com/') == {}
     assert parse_parameters('http://example.com/?') == {}
     assert parse_parameters('https://example.com/path/to/page?name=ferret') == {'name': 'ferret'}
-    assert parse_parameters('https://example.com/path/to/page?name=ferret&color=purple') == {'name': 'ferret',
-                                                                                             'color': 'purple'}
-    assert parse_parameters('https://example.com/path/to/page?name=ferret&color=purple&backgroundcolor=white&age=19') ==\
-           {'name': 'ferret', 'color': 'purple', 'backgroundcolor': 'white', 'age': '19'}
+    assert parse_parameters('https://example.com/path/to/page?name=ferret&color=purple') == {'name': 'ferret','color': 'purple'}
+    assert parse_parameters('https://example.com/path/to/page?name=ferret&color=purple&backgroundcolor=white') == \
+           {'name': 'ferret', 'color': 'purple', 'backgroundcolor': 'white'}
 
     # # Tests for function "parse_cookies"
     assert parse_cookies('') == {}
